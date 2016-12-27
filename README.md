@@ -1,8 +1,10 @@
 # React Contextual Router
 
-React Contextual Router is a routing library for React for conditional component loaded based on the user context. For instance, is the user using the app on a wide screen, is the user using a pointer device, has the user seen a component. Based on this information you can then load component A or B to better suit functionality to the context of the user.
+React Contextual Router is a contextual routing library for React. Load components based on contextual information like viewport size, pointer type and element visibility.
 
-For now, this is an experiment in porting [ConditionerJS](http://conditionerjs.com) to React.
+Is the user using your app on a wide viewport load the MegaDropdownMenu component, is it a narrow viewport, load the SlideInMenu component instead.
+
+For now, this is an experimental port of [ConditionerJS](http://conditionerjs.com) to React.
 
 
 ## Example
