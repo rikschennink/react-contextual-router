@@ -1,7 +1,7 @@
 {
-  "name": "react-context-router",
+  "name": "react-contextual-router",
   "version": "0.1.0",
-  "description": "React Context Router is a contextual routing library for React.",
+  "description": "React Contextual Router, render components based on user context.",
   "main": "index.js",
   "directories": {
     "example": "example"

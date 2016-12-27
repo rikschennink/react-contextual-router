@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
+import { ContextualRouter, Context } from 'react-contextual-router';
 import logo from './logo.svg';
 import './App.css';
-
-import { ContextRouter, Context } from './react-context-router';
-
 
 class App extends Component {
   render() {
@@ -17,7 +15,7 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
     
-          <ContextRouter>
+          <ContextualRouter>
               <Context matches="media:{(min-width:40em)} and element:{was visible}" id="0">
     
                   <p>Big screen and element seen</p>
@@ -28,7 +26,8 @@ class App extends Component {
                   <p>Fallback</p>
     
               </Context>
-          </ContextRouter>
+          </ContextualRouter>
+          
       </div>
     );
   }

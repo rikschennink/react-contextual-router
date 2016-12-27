@@ -892,6 +892,4 @@ var WebContext = {
 
 };
 
-export {
-	WebContext
-}
+module.exports = WebContext;

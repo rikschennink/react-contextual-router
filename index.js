@@ -1,27 +1,25 @@
-import React from 'react';
-import { WebContext } from './ContextTester';
+const React = require('react');
+const WebContext = require('./ContextTester');
 
 const isWildCard = (component) => component.props.matches === '*';
 
+const ContextualRouter = React.createClass({
 
-class ContextRouter extends React.Component {
-	
-	constructor(props) {
-		
-		super(props);
-		
-		this.activeChildren = [];
-		
-		this.state = {
+	getInitialState: function() {
+		return {
 			shouldFallback:false
 		};
-		
-	}
-	
-	onContextChange(child, matched) {
-		
+	},
+
+	onContextChange: function(child, matched) {
+
 		if (!isWildCard(child)) {
-			
+
+			// create array if not already defined
+			if (!this.activeChildren) {
+				this.activeChildren = [];
+			}
+
 			// remove child of which context changed
 			this.activeChildren = this.activeChildren.filter(activeChild => activeChild.props.matches !== child.props.matches);
 
@@ -39,48 +37,52 @@ class ContextRouter extends React.Component {
 		this.setState({
 			shouldFallback:hasFallback && this.activeChildren.length === 0
 		});
-		
-	}
-	
-	render() {
-		
-		const { children } = this.props;
-		const { shouldFallback } = this.state;
-		
-		return (<div> {
-			React.Children.map(children,
-				(child) => {
-					
-					if (!shouldFallback && isWildCard(child)) {
-						return null;
-					}
-					
-					return React.cloneElement(child, {
-						onContextChange: this.onContextChange.bind(this)
-					});
-					
+
+	},
+
+	render:function() {
+
+		const children = this.props.children;
+		const shouldFallback  = this.state.shouldFallback;
+		const output = React.Children.map(children,
+			(child) => {
+
+				if (!shouldFallback && isWildCard(child)) {
+					return null;
 				}
-			)
-		} </div>);
-		
+
+				return React.cloneElement(child, {
+					onContextChange: this.onContextChange
+				});
+
+			}
+		);
+
+		return React.createElement('div', null, output || '');
 	}
-	
-}
 
+});
 
-class Context extends React.Component {
-	
-	constructor(props) {
-		
-		super(props);
-		
-		this.state = {
+const Context = React.createClass({
+
+	propTypes: {
+		matches: React.PropTypes.string
+	},
+
+	getDefaultProps: function() {
+		return {
+			matches: null,
+			onContextChange: () => {}
+		};
+	},
+
+	getInitialState: function() {
+		return {
 			matchesContext:isWildCard(this)
 		};
-		
-	}
-	
-	componentDidMount() {
+	},
+
+	componentDidMount: function() {
 
 		if (isWildCard(this)) {
 			this.props.onContextChange(this, true);
@@ -88,39 +90,25 @@ class Context extends React.Component {
 		}
 
 		WebContext.setTest(this.props.matches, this.container, matchesContext => {
-			
+
 			this.setState({
-				...this.state,
-				matchesContext
+				matchesContext:matchesContext
 			});
 
 			this.props.onContextChange(this, matchesContext);
 		});
-		
-	}
-	
-	render() {
-		
-		return (
-			<div ref={ container => { this.container = container } }>
-				{ this.state.matchesContext ? this.props.children : null }
-			</div>
-		);
-		
+
+	},
+
+	render:function() {
+
+		return React.createElement('div', { ref: container => { this.container = container } }, this.state.matchesContext ? this.props.children : '');
+
 	}
 
-}
+});
 
-Context.propTypes = {
-	matches: React.PropTypes.string
+module.exports = {
+	ContextualRouter:ContextualRouter,
+	Context:Context
 };
-
-Context.defaultProps = {
-	matches: null,
-	onContextChange: () => {}
-};
-
-export {
-	ContextRouter,
-	Context
-}
