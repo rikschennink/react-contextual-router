@@ -1,5 +1,20 @@
 const React = require('react');
-const WebContext = require('./ContextTester');
+
+// context monitor related
+const WebContext = require('./modules/WebContext');
+const MonitorFactory = require('./modules/MonitorFactory');
+
+
+// create our context monitor factory and setup default monitors
+const element = require('./monitors/element');
+const media = require('./monitors/media');
+const pointer = require('./monitors/pointer');
+
+const factory = new MonitorFactory();
+factory.addMonitor('element',element);
+factory.addMonitor('media',media);
+factory.addMonitor('pointer',pointer);
+
 
 const isWildCard = (component) => component.props.matches === '*';
 
@@ -89,7 +104,7 @@ const Context = React.createClass({
 			return;
 		}
 
-		WebContext.setTest(this.props.matches, this.container, matchesContext => {
+		WebContext.setTest(this.props.matches, this.container, factory, matchesContext => {
 
 			this.setState({
 				matchesContext:matchesContext
