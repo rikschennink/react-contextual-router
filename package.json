@@ -1,0 +1,14 @@
+{
+  "name": "react-context-router",
+  "version": "0.1.0",
+  "description": "React Context Router is a contextual routing library for React.",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rik Schennink",
+  "license": "ISC"
+}
