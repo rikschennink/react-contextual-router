@@ -1,27 +1,32 @@
 {
-  "name": "react-contextual-router",
-  "version": "0.1.2",
-  "description": "React Contextual Router, render components based on user context.",
-  "main": "index.js",
-  "directories": {
-    "example": "example"
-  },
-  "keywords": [
-    "react",
-    "conditionerjs",
-    "matches",
-    "media",
-    "queries",
-    "media queries",
-    "context"
-  ],
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/rikschennink/react-contextual-router.git"
-  },
-  "author": "rikschennink",
-  "license": "ISC"
+    "name": "react-contextual-router",
+    "version": "1.0.0",
+    "description": "Declarative context based routing for React.",
+    "homepage": "https://pqina.nl/conditioner",
+    "main": "index.js",
+    "keywords": [
+        "react",
+        "conditioner",
+        "matches",
+        "media",
+        "queries",
+        "media queries",
+        "context",
+        "responsive"
+    ],
+    "dependencies": {
+        "conditioner-core": "^2.3.1"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/rikschennink/react-contextual-router.git"
+    },
+    "bugs": {
+        "url": "https://github.com/rikschennink/react-contextual-router/issues"
+    },
+    "author": "Rik Schennink <hello@rikschennink.nl> (http://rikschennink.nl/)",
+    "license": "MIT"
 }
