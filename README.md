@@ -2,7 +2,7 @@
 
 React Contextual Router is a contextual routing library for React based on [Conditioner](https://github.com/rikschennink/conditioner).
 
-Load views based on user context parameters.
+Render views based on user context.
 
 
 ## Installation
