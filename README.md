@@ -2,7 +2,7 @@
 
 React Contextual Router is a contextual routing library for React based on [Conditioner](https://github.com/rikschennink/conditioner).
 
-Render views based on user context.
+Render components based on user context.
 
 
 ## Installation
@@ -13,20 +13,25 @@ Render views based on user context.
 ## Usage
 
 ```jsx
-import { ContextRouter, Context } from 'react-contextual-router';
+import React, { Component } from 'react';
+import { Context, ContextRouter } from 'react-contextual-router';
 
-class MyContextRouterView extends React.Component {
+class FallbackComponent extends Component {
+    render() {
+        return <b>Fallback</b>;
+    }
+}
+
+class App extends Component {
   render() {
     return (
       <ContextRouter>
         <Context query="@media (min-width:40em)">
-            <h1>Hello</h1>
-
+          <h1>Hello</h1>
         </Context>
 
         <Context query="@media (max-width:30em)">
-            <h1>World</h1>
-
+          <h1>World</h1>
         </Context>
 
         <Context component={FallbackComponent} />
@@ -34,4 +39,6 @@ class MyContextRouterView extends React.Component {
     );
   }
 }
+
+export default App;
 ```
